@@ -1,5 +1,5 @@
 {
-  "$schema": "https://modelcontextprotocol.io/schemas/server.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.bch1212/agentfetch",
   "description": "Token-budgeted web fetch for AI agents — auto-routes Jina, FireCrawl, Trafilatura, PDF.",
   "version": "1.0.0",
