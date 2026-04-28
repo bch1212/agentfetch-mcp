@@ -1,0 +1,40 @@
+{
+  "name": "agentfetch",
+  "display_name": "AgentFetch — Web Intelligence for AI Agents",
+  "description": "Fetch any URL and get clean, token-estimated, cached Markdown. Built for AI agents: token budgeting, smart caching, and parallel fetch built in.",
+  "version": "1.0.0",
+  "author": "Brett Halverson",
+  "homepage": "https://agentfetch.dev",
+  "repository": "https://github.com/agentfetch/agentfetch",
+  "license": "MIT",
+  "tools": [
+    {
+      "name": "fetch_url",
+      "description": "Fetch any web URL and return clean, LLM-ready Markdown with token count, metadata, and 6-hour caching. Use this instead of a generic web_fetch when you care about (a) blowing your context window — pass max_tokens to cap the response, (b) repeated fetches of the same URL — cached responses cost ~$0.0001, (c) JS-rendered pages — auto-routes to a JS-capable fetcher when needed, or (d) PDFs — extracts text without you handling the binary. Returns markdown + metadata.title + metadata.token_count + cache.hit + fetch_info.fetcher_used. Charges per-call from $0.001."
+    },
+    {
+      "name": "estimate_tokens",
+      "description": "Estimate the token count of a URL's content WITHOUT fetching the body. Use BEFORE fetch_url when you're unsure whether a URL fits your remaining context budget — this call is ~10x cheaper than a fetch and lets you skip pages that would blow your window. Returns estimated_tokens + confident (false when the server omits Content-Length, in which case you should fetch with a max_tokens cap instead). $0.0002 per call."
+    },
+    {
+      "name": "fetch_multiple",
+      "description": "Fetch up to 20 URLs concurrently in a single call. Use when you have a list of links to read (search results, sitemap, references in a doc) and want them processed in parallel rather than sequentially. Each result is the same shape as fetch_url. Pass max_tokens_each to cap the per-result size and stay inside your context budget. Cached URLs are returned at cache-hit pricing without re-fetching."
+    },
+    {
+      "name": "search_and_fetch",
+      "description": "Web search + fetch top results in one round-trip. Use when you have a research question rather than specific URLs — e.g. 'find the most recent docs on the X library' or 'what's the latest news about Y'. Returns the top N results with full Markdown content, each truncated to max_tokens_each. Saves you the search-then-fetch dance and one API hop. $0.015 covers search + 3 fetches."
+    }
+  ],
+  "categories": ["web", "research", "data"],
+  "pricing": "Pay-per-call from $0.001/fetch. 500 free fetches on signup. No credit card required.",
+  "auth": {
+    "type": "api_key",
+    "header": "X-AgentFetch-Key",
+    "signup_url": "https://agentfetch.dev/signup"
+  },
+  "transport": "stdio",
+  "entrypoint": {
+    "command": "python",
+    "args": ["-m", "agentfetch.mcp.server"]
+  }
+}

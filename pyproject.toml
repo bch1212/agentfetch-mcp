@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentfetch-mcp"
+version = "1.0.0"
+description = "MCP server for fetching web URLs with token estimation, smart caching, and intelligent routing. Built for AI agents."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Brett Halverson" }]
+keywords = ["mcp", "model-context-protocol", "ai-agents", "web-scraping", "claude", "langchain"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+    "fastmcp>=0.4.0,<1.0.0",
+    "httpx>=0.27",
+    "trafilatura>=1.12,<2.0",
+    "pypdf2>=3.0,<4.0",
+    "tiktoken>=0.7,<1.0",
+    "redis>=5.0,<6.0",
+    "python-dotenv>=1.0,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[project.urls]
+Homepage = "https://www.agentfetch.dev"
+Repository = "https://github.com/bch1212/agentfetch-mcp"
+Issues = "https://github.com/bch1212/agentfetch-mcp/issues"
+
+[project.scripts]
+agentfetch-mcp = "agentfetch.mcp.server:main"
+
+[tool.setuptools.packages.find]
+include = ["agentfetch*"]
