@@ -1,0 +1,40 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server.json",
+  "name": "io.github.bch1212/agentfetch",
+  "description": "Fetch any web URL and get clean, token-budgeted, cached Markdown. Built for AI agents — auto-routes between Trafilatura, Jina, FireCrawl, and PDF extractors. One MCP tool, every URL type.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/bch1212/agentfetch-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registry_type": "pypi",
+      "identifier": "agentfetch-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environment_variables": [
+        {
+          "name": "JINA_API_KEY",
+          "description": "Jina Reader API key. Free tier covers ~1M tokens/mo at jina.ai/reader.",
+          "is_required": false,
+          "is_secret": true
+        },
+        {
+          "name": "FIRECRAWL_API_KEY",
+          "description": "FireCrawl API key for JS-rendered pages. 500 free credits at firecrawl.dev. Optional.",
+          "is_required": false,
+          "is_secret": true
+        },
+        {
+          "name": "REDIS_URL",
+          "description": "Redis connection URL for response caching. Optional.",
+          "is_required": false,
+          "is_secret": false
+        }
+      ]
+    }
+  ]
+}
