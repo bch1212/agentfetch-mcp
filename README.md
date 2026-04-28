@@ -1,5 +1,8 @@
 # agentfetch-mcp
 
+<!-- mcp-name: io.github.bch1212/agentfetch -->
+
+
 > **Web intelligence for AI agents** — an MCP server that fetches URLs with token estimation, smart caching, and intelligent routing built in.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
